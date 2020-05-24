@@ -22,3 +22,15 @@ after_success:
   - docker push martijnwip/complex-nginx
   - docker push martijnwip/complex-server
   - docker push martijnwip/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-central-1
+  app: complex
+  env: Complex-env
+  bucket_name: elasticbeanstalk-eu-central-1-057490577200
+  bucket_path: complex
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
